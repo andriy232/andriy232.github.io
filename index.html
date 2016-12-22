@@ -1,11 +1,59 @@
+<!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title>HTML</title>
-        <link rel="stylesheet" href="style.css">
-    </head>
-    <body>
-        <h1>This is an example of using GitHub Pages</h1>
-        <p>Simple string text</p>
-    </body>
+<head>
+    <meta charset="UTF-8">
+    <title>Three.js my page</title>
+</head>
+<body>
+<!--
+      <script type='text/javascript'>
+          function onClick()
+          {
+             var el = document.getElementById('file');
+              var img= document.getElementById('img');
+              console.log(el.);
+              img.src=el.innerHTML;
+          }
+    </script>
+    <input id='file' type="file">
+    <input type="button" onclick='onClick();' value='Button'>
+
+  <img id='img' src=''>
+-->
+<!--   <script src="build/three.js"></script>-->
+    <script>
+//        створюємо сцену
+        var scene = new THREE.Scene();
+        
+//        створюємо камеру
+        var camera = new THREE.PerspectiveCamera(100, window.innerWidth / window.innerHeight, 0.1, 1000);
+        
+//        налаштовуємо камеру
+        camera.position.z = 20;
+        
+//        налаштуємо WebGL рендерер
+        var renderer = new THREE.WebGLRenderer(); 
+        renderer.setSize( window.innerWidth, window.innerHeight ); 
+        document.body.appendChild( renderer.domElement );
+        
+//        створюємо циліндр
+        var geometry = new THREE.CylinderGeometry( 5, 5, 20, 32 );
+        
+//        створюємо матеріал
+        var material = new THREE.MeshBasicMaterial( { color: 0xffffff, wireframe: true} );
+        
+//        додаємо циліндр в сцену
+        var cylinder = new THREE.Mesh( geometry, material ); 
+        scene.add( cylinder );
+        
+//        викликаємо рендер
+        function render() {
+            requestAnimationFrame(render);
+//            cylinder.rotation.z = 1;
+            cylinder.rotation.y += 0.1;
+            renderer.render(scene, camera);
+        }
+        render();
+    </script>
+</body>
 </html>
